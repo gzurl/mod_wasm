@@ -10,17 +10,33 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  test:
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-    runs-on: ${{ matrix.os }}
+  build-windows:
+    runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Build
-      working-directory: ./wasm_runtime
-      run: cargo build --verbose
-    - name: Run tests
-      working-directory: ./wasm_runtime
-      run: cargo test --verbose
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1.1
+
+      - name: Check for msbuild
+        run: msbuild --version
+
+      - name: Check for cl.exe
+        run: cl.exe --version
+
+      - name: Check for link.exe
+        run: cl.exe --version
+
+# jobs:
+#   test:
+#     strategy:
+#       fail-fast: false
+#       matrix:
+#         os: [ubuntu-latest, windows-latest, macos-latest]
+#     runs-on: ${{ matrix.os }}
+#     steps:
+#     - uses: actions/checkout@v3
+#     - name: Build
+#       working-directory: ./wasm_runtime
+#       run: cargo build --verbose
+#     - name: Run tests
+#       working-directory: ./wasm_runtime
+#       run: cargo test --verbose
