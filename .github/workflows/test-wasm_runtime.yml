@@ -30,33 +30,33 @@ jobs:
         working-directory: ${{ env.APACHE_PATH }}
         run: svn co http://svn.apache.org/repos/asf/apr/apr/trunk srclib/apr
 
-      - name: cd && ls @ ${{ env.APACHE_PATH }} 
+      - name: ls @ ${{ env.APACHE_PATH }} 
         working-directory: ${{ env.APACHE_PATH }}
-        run: cd && ls 
+        run: ls
 
-      - name: cd && ls @ ${{ env.APACHE_PATH }}/srclib/apr
+      - name: ls @ ${{ env.APACHE_PATH }}/srclib/apr
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr
-        run: cd && ls
+        run: ls
 
       - name: Run 'buildconf' for APR
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr
         run: ./buildconf
 
-      - name: cd && ls @ ${{ env.APACHE_PATH }}/srclib/apr
+      - name: ls @ ${{ env.APACHE_PATH }}/srclib/apr
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr
-        run: cd && ls
+        run: ls
       
-      - name: Find configure
+      - name: dir /S /B configure
         working-directory: ${{ env.APACHE_PATH }}
-        run: find . -name configure
+        run: dir /S /B configure
 
       - name: Run 'configure' for APR 
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr
         run: ./configure
 
-      - name: Find apr.h
+      - name: dir /S /B apr.h
         working-directory: ${{ env.APACHE_PATH }}
-        run: find . -name apr.h
+        run: dir /S /B apr.h
 
       - name: Compile mod_wasm.so      
         run: cl.exe /nologo /MD /O2 /LD /W3 -DWIN32 -D_WIN32
