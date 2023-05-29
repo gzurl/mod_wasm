@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: apache/httpd
-          path: $APACHE_PATH
+          path: ${{ env.APACHE_PATH }}
 
       # - name: Build wasm_runtime.so
       #   working-directory: ./wasm_runtime
@@ -32,10 +32,10 @@ jobs:
 
       - name: DIR
         run: dir
-      - name: echo $APACHE_PATH
-        run: echo $APACHE_PATH
-      - name: DIR $APACHE_PATH
-        run: dir $APACHE_PATH
+      - name: echo ${{ env.APACHE_PATH }}
+        run: echo ${{ env.APACHE_PATH }}
+      - name: DIR ${{ env.APACHE_PATH }}
+        run: dir ${{ env.APACHE_PATH }}
 
       # - name: Compile mod_wasm.so \
       #   run: cl.exe /nologo /MD /O2 /LD /W3 -DWIN32 -D_WIN32 \
@@ -44,11 +44,10 @@ jobs:
 
       - name: Compile mod_wasm.so      
         run: cl.exe /nologo /MD /O2 /LD /W3 -DWIN32 -D_WIN32
-            -I$APACHE_PATH/include -I../wasm_runtime/include
+            -I${{ env.APACHE_PATH }}/include -I../wasm_runtime/include
             /c /Fomod_wasm.obj mod_wasm/modules/wasm/mod_wasm.c
 
       
-
 # jobs:
 #   test:
 #     strategy:
