@@ -46,17 +46,17 @@ jobs:
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr
         run: ls
       
-      - name: dir /S /B configure
+      - name: dir /S /B | findstr /i "configure"
         working-directory: ${{ env.APACHE_PATH }}
-        run: dir /S /B configure
+        run: dir /S /B | findstr /i "configure"
 
       - name: Run 'configure' for APR 
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr
         run: ./configure
 
-      - name: dir /S /B apr.h
+      - name: dir /S /B | findstr /i "apr.h"
         working-directory: ${{ env.APACHE_PATH }}
-        run: dir /S /B apr.h
+        run: dir /S /B | findstr /i "apr.h"
 
       - name: Compile mod_wasm.so      
         run: cl.exe /nologo /MD /O2 /LD /W3 -DWIN32 -D_WIN32
