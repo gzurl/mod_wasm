@@ -40,7 +40,7 @@ jobs:
 
       - name: Run 'buildconf' for APR
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr
-        run: ./buildconf --verbose
+        run: sh ./buildconf --verbose
 
       - name: ls @ ${{ env.APACHE_PATH }}/srclib/apr
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr
