@@ -27,21 +27,31 @@ jobs:
           path: ${{ env.APACHE_PATH }}
 
       - name: Checkout Apache Portable Runtime (APR) into '${{ env.APACHE_PATH }}/srclib/apr'
-        run: cd ${{ env.APACHE_PATH }} && svn co http://svn.apache.org/repos/asf/apr/apr/trunk srclib/apr
+        working-directory: ${{ env.APACHE_PATH }}
+        run: svn co http://svn.apache.org/repos/asf/apr/apr/trunk srclib/apr
 
-      - name: pwd && dir
-        run: pwd && dir
+      - name: pwd; dir @ ${{ env.APACHE_PATH }} 
+        working-directory: ${{ env.APACHE_PATH }}
+        run: pwd; dir
 
-      - name: Run 'buildconf' for APR 
-        run: cd ${{ env.APACHE_PATH }}/srclib/apr && ./buildconf
-        
-      - name: pwd && dir
-        run: pwd && dir
+      - name: pwd; dir @ ${{ env.APACHE_PATH }}/srclib/apr
+        working-directory: ${{ env.APACHE_PATH }}/srclib/apr
+        run: pwd; dir
+
+      - name: Run 'buildconf' for APR
+        working-directory: ${{ env.APACHE_PATH }}/srclib/apr
+        run: ./buildconf
+
+      - name: pwd; dir @ ${{ env.APACHE_PATH }}/srclib/apr
+        working-directory: ${{ env.APACHE_PATH }}/srclib/apr
+        run: pwd; dir
 
       - name: Run 'configure' for APR 
+        working-directory: ${{ env.APACHE_PATH }}/srclib/apr
         run: ./configure
 
       - name: Find apr.h
+        working-directory: ${{ env.APACHE_PATH }}
         run: find . -name apr.h
 
       - name: Compile mod_wasm.so      
