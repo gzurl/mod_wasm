@@ -30,21 +30,25 @@ jobs:
         working-directory: ${{ env.APACHE_PATH }}
         run: svn co http://svn.apache.org/repos/asf/apr/apr/trunk srclib/apr
 
-      - name: pwd; dir @ ${{ env.APACHE_PATH }} 
+      - name: pwd; ls -l @ ${{ env.APACHE_PATH }} 
         working-directory: ${{ env.APACHE_PATH }}
-        run: pwd; dir
+        run: pwd; ls -l
 
-      - name: pwd; dir @ ${{ env.APACHE_PATH }}/srclib/apr
+      - name: pwd; ls -l @ ${{ env.APACHE_PATH }}/srclib/apr
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr
-        run: pwd; dir
+        run: pwd; ls -l
 
       - name: Run 'buildconf' for APR
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr
         run: ./buildconf
 
-      - name: pwd; dir @ ${{ env.APACHE_PATH }}/srclib/apr
+      - name: pwd; ls -l @ ${{ env.APACHE_PATH }}/srclib/apr
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr
-        run: pwd; dir
+        run: pwd; ls -l
+      
+      - name: Find configure
+        working-directory: ${{ env.APACHE_PATH }}
+        run: find . -name configure
 
       - name: Run 'configure' for APR 
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr
