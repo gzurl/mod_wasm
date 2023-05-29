@@ -16,11 +16,23 @@ jobs:
     steps:
       - name: Install MSVC
         uses: ilammy/msvc-dev-cmd@v1
+
       - name: Checkout Apache HTTP Server repository
         uses: actions/checkout@v3
         with:
           repository: apache/httpd
           path: $APACHE_PATH
+
+      # - name: Build wasm_runtime.so
+      #   working-directory: ./wasm_runtime
+      #   run: cargo build --release --verbose
+
+      - name: Compile mod_wasm.so
+        working-directory: ./mod_wasm/mod_wasm
+        run: "cl.exe /nologo /MD /O2 /LD /W3 -DWIN32 -D_WIN32 \
+          -I%APACHE_PATH%\\include -I..\\wasm_runtime\\include \
+          /c /Fomod_wasm.obj mod_wasm.c"
+
       
 
 # jobs:
