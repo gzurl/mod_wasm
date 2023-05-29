@@ -20,6 +20,9 @@ jobs:
       - name: Setup MSVC for C/C++ development
         uses: ilammy/msvc-dev-cmd@v1
 
+      - name: Install Autoconf
+        run: choco install autoconf libtool
+
       - name: Checkout Apache HTTP Server repository into '${{ env.APACHE_PATH }}'
         uses: actions/checkout@v3
         with:
