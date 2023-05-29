@@ -29,10 +29,8 @@ jobs:
       - name: Checkout Apache Portable Runtime (APR) into '${{ env.APACHE_PATH }}/srclib/apr'
         run: cd ${{ env.APACHE_PATH }} && svn co http://svn.apache.org/repos/asf/apr/apr/trunk srclib/apr
 
-      # - name: Compile mod_wasm.so \
-      #   run: cl.exe /nologo /MD /O2 /LD /W3 -DWIN32 -D_WIN32 \
-      #     -I%APACHE_PATH%\include -I..\wasm_runtime\include \
-      #     /c /Fomod_wasm.obj mod_wasm\modules\wasm\mod_wasm.c
+      - name: Run `buildconf`
+        run: cd ${{ env.APACHE_PATH }} && ./buildconf
 
       - name: Compile mod_wasm.so      
         run: cl.exe /nologo /MD /O2 /LD /W3 -DWIN32 -D_WIN32
