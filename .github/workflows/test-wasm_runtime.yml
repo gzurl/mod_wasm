@@ -21,7 +21,11 @@ jobs:
         uses: ilammy/msvc-dev-cmd@v1
 
       - name: Install Autoconf
-        run: choco install mingw
+        uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          install: >-
+            autotools
 
       - name: Checkout Apache HTTP Server repository into '${{ env.APACHE_PATH }}'
         uses: actions/checkout@v3
