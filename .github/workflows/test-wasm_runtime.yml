@@ -22,10 +22,10 @@ jobs:
         run: msbuild --version
 
       - name: Check for cl.exe
-        run: cl.exe --version
+        run: cl.exe
 
       - name: Check for link.exe
-        run: cl.exe --version
+        run: link.exe
 
 # jobs:
 #   test:
