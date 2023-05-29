@@ -8,24 +8,20 @@ on:
 
 env:
   CARGO_TERM_COLOR: always
+  $APACHE_PATH: './Apache_v2.4'
 
 jobs:
   build-windows:
     runs-on: windows-latest
     steps:
-      # - uses: microsoft/setup-msbuild@v1.1
-      # - name: Add msbuild to PATH
-
-      - uses: ilammy/msvc-dev-cmd@v1
+      - name: Install MSVC
+        uses: ilammy/msvc-dev-cmd@v1
+      - name: Checkout Apache HTTP Server repository
+        uses: actions/checkout@v3
+        with:
+          repository: apache/httpd
+          path: $APACHE_PATH
       
-      - name: Check for msbuild
-        run: msbuild --version
-
-      - name: Check for cl.exe
-        run: cl.exe
-
-      - name: Check for link.exe
-        run: link.exe
 
 # jobs:
 #   test:
