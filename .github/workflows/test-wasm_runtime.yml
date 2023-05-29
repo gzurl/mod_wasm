@@ -28,7 +28,6 @@ jobs:
       #   run: cargo build --release --verbose
 
       - name: Compile mod_wasm.so
-        working-directory: .\mod_wasm\mod_wasm
         run: "cl.exe /nologo /MD /O2 /LD /W3 -DWIN32 -D_WIN32 \
           -I%APACHE_PATH%\\include -I..\\wasm_runtime\\include \
           /c /Fomod_wasm.obj mod_wasm.c"
