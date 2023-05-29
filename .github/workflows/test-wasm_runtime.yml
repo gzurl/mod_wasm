@@ -8,7 +8,7 @@ on:
 
 env:
   CARGO_TERM_COLOR: always
-  APACHE_PATH: 'Apache_v2.4'
+  APACHE_PATH: Apache_v2.4
 
 jobs:
   build-windows:
@@ -29,22 +29,24 @@ jobs:
       #   working-directory: ./wasm_runtime
       #   run: cargo build --release --verbose
 
-      - name: Where am I?
-        run: pwd
       - name: DIR
         run: dir
-      - name: DIR ..
-        run: dir ..
-      - name: DIR ../..
-        run: dir ../..
+      - name: echo $APACHE_PATH
+        run: echo $APACHE_PATH
+      - name: echo %APACHE_PATH%
+        run: echo %APACHE_PATH%
+      - name: DIR $APACHE_PATH
+        run: dir $APACHE_PATH
+      - name: DIR %APACHE_PATH%
+        run: dir %APACHE_PATH%
       # - name: Compile mod_wasm.so \
       #   run: cl.exe /nologo /MD /O2 /LD /W3 -DWIN32 -D_WIN32 \
       #     -I%APACHE_PATH%\include -I..\wasm_runtime\include \
       #     /c /Fomod_wasm.obj mod_wasm\modules\wasm\mod_wasm.c
 
       - name: Compile mod_wasm.so      
-        run: cl.exe /nologo /MD /O2 /LD /W3 -DWIN32 -D_WIN32 \
-            -I%APACHE_PATH%\include -I..\wasm_runtime\include \
+        run: cl.exe /nologo /MD /O2 /LD /W3 -DWIN32 -D_WIN32
+            -I%APACHE_PATH%/include -I../wasm_runtime/include
             /c /Fomod_wasm.obj mod_wasm/modules/wasm/mod_wasm.c
 
       
