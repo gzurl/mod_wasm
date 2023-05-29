@@ -29,10 +29,13 @@ jobs:
       - name: Checkout Apache Portable Runtime (APR) into '${{ env.APACHE_PATH }}/srclib/apr'
         run: cd ${{ env.APACHE_PATH }} && svn co http://svn.apache.org/repos/asf/apr/apr/trunk srclib/apr
 
-      - name: Run 'buildconf' and 'configure' for APR 
-        run: cd ${{ env.APACHE_PATH }}/srclib/apr && ./buildconf && ./configure
+      - name: Run 'buildconf' for APR 
+        run: cd ${{ env.APACHE_PATH }}/srclib/apr && ./buildconf
 
-      - name: Run 'buildconf' and 'configure' for APR 
+      - name: Run 'configure' for APR 
+        run: cd ${{ env.APACHE_PATH }}/srclib/apr && ./configure
+
+      - name: Find apr.h
         run: find . -name apr.h
 
       - name: Compile mod_wasm.so      
