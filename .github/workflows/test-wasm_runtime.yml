@@ -21,7 +21,7 @@ jobs:
         uses: ilammy/msvc-dev-cmd@v1
 
       - name: Install Autoconf
-        run: choco install autoconf libtool
+        run: choco install mingw
 
       - name: Checkout Apache HTTP Server repository into '${{ env.APACHE_PATH }}'
         uses: actions/checkout@v3
