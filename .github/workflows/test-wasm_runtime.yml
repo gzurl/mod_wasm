@@ -14,6 +14,8 @@ jobs:
   build-windows:
     runs-on: windows-latest
     steps:
+      - uses: actions/checkout@v3
+
       - name: Install MSVC
         uses: ilammy/msvc-dev-cmd@v1
 
@@ -31,6 +33,10 @@ jobs:
         run: pwd
       - name: DIR
         run: dir
+      - name: DIR ..
+        run: dir ..
+      - name: DIR ../..
+        run: dir ../..
       # - name: Compile mod_wasm.so \
       #   run: cl.exe /nologo /MD /O2 /LD /W3 -DWIN32 -D_WIN32 \
       #     -I%APACHE_PATH%\include -I..\wasm_runtime\include \
