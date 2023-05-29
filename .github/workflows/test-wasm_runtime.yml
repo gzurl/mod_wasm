@@ -13,11 +13,11 @@ jobs:
   build-windows:
     runs-on: windows-latest
     env:
-      APACHE_PATH: Apache_v2.4
+      APACHE_PATH: apache_httpd
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install MSVC
+      - name: Setup MSVC for C/C++ development
         uses: ilammy/msvc-dev-cmd@v1
 
       - name: Checkout Apache HTTP Server repository into ${{ env.APACHE_PATH }}
@@ -25,6 +25,9 @@ jobs:
         with:
           repository: apache/httpd
           path: ${{ env.APACHE_PATH }}
+
+      - name: Checkout Apache Portable Runtime (APR) into ${{ env.APACHE_PATH }}/srclib/apr
+        run: cd ${{ env.APACHE_PATH }} && svn co http://svn.apache.org/repos/asf/apr/apr/trunk srclib/apr
 
       - name: DIR
         run: dir
