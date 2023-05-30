@@ -14,11 +14,16 @@ jobs:
     runs-on: windows-latest
     env:
       APACHE_PATH: apache_httpd
+    strategy:
+      fail-fast: true
     steps:
       - uses: actions/checkout@v3
 
       - name: Setup MSVC for C/C++ development
         uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Check for 'libtool'
+        run: which libtool
 
       - name: Install Autoconf
         uses: msys2/setup-msys2@v2
@@ -26,6 +31,12 @@ jobs:
           update: true
           install: >-
             autotools
+
+      - name: Check for 'libtool'
+        run: which libtool
+
+      - name: Run 'libtool'
+        run: libtool
 
       - name: Checkout Apache HTTP Server repository into '${{ env.APACHE_PATH }}'
         uses: actions/checkout@v3
@@ -47,6 +58,7 @@ jobs:
 
       - name: Run 'buildconf' for APR
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr
+        shell: msys2 {0}
         run: sh ./buildconf --verbose
 
       - name: ls @ ${{ env.APACHE_PATH }}/srclib/apr
