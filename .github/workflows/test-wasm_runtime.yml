@@ -26,6 +26,7 @@ jobs:
           update: true
           install: >-
             autotools
+            gcc
             python
 
       - name: Check for 'libtool'
