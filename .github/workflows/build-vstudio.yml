@@ -97,11 +97,11 @@ jobs:
 
       - name: Run 'configure' for APR 
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr
-        shell: msys2 {0}
-        run: ./configure --with-expat=/mingw64
+        # shell: msys2 {0}
+        run: ./configure
 
       - name: ls -lr /usr/include/sys @ msys2
-        shell: msys2 {0}
+        # shell: msys2 {0}
         run: ls -lr /usr/include/sys
 
       - name: ls -lr /usr
@@ -130,11 +130,9 @@ jobs:
       # -I"%WASM_RUNTIME%\include" /c /Fomod_wasm.obj mod_wasm.c
 
       - name: echo %INCLUDE%
-        shell: msys2 {0}
         run: echo %INCLUDE%
 
       - name: Compile mod_wasm.so
-        shell: msys2 {0}
         run: cl.exe /nologo /MD /O2 /LD /W3 -DWIN32 -D_WIN32
             -I/usr/include
             -I%INCLUDE%
