@@ -83,7 +83,7 @@ jobs:
       - name: Run 'configure' for APR 
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr
         shell: msys2 {0}
-        run: ./configure --with-libxml2=/usr/include/w32api
+        run: ./configure --with-libxml2=/mingw64/include/libxml2
 
       - name: ls @ ${{ env.APACHE_PATH }}/srclib/apr/include
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr/include
