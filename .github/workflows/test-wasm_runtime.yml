@@ -37,10 +37,10 @@ jobs:
         shell: msys2 {0}
         run: which libtool
 
-      - name: ls -lr | grep xml2  (msys)
+      - name: ls -lr (msys)
         shell: msys2 {0}
-        run: ls -lr | grep xml2
-
+        run: ls -lr
+        
       - name: ls -lr | grep xml2 (bash)
         shell: bash
         run: ls -lr | grep xml2
@@ -79,7 +79,7 @@ jobs:
       - name: Run 'configure' for APR 
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr
         shell: msys2 {0}
-        run: ./configure --with-libxml2=/usr/include/libxml2/libxml
+        run: ./configure --with-libxml2=/usr/include/libxml2
 
       - name: ls @ ${{ env.APACHE_PATH }}/srclib/apr/include
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr/include
