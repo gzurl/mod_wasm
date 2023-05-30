@@ -1,4 +1,4 @@
-name: Build `mod_wasm.so` on Windows
+name: Build `mod_wasm.so` on Windows (vstudio)
 
 on:
   push:
