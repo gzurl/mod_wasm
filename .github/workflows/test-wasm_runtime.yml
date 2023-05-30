@@ -118,13 +118,13 @@ jobs:
       # -I"C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\ucrt"
       # -I"%WASM_RUNTIME%\include" /c /Fomod_wasm.obj mod_wasm.c
 
-      - name: echo includes
-        run: echo $INCLUDE
+      - name: echo %INCLUDE%
+        run: echo %INCLUDE%
 
       - name: Compile mod_wasm.so    
         run: cl.exe /nologo /MD /O2 /LD /W3 -DWIN32 -D_WIN32
             -I/usr/include
-            -I$INCLUDE
+            -I%INCLUDE%
             -I./${{ env.APACHE_PATH }}/include -I./${{ env.APACHE_PATH }}/srclib/apr/include
             -I../wasm_runtime/include
             /c /Fomod_wasm.obj mod_wasm/modules/wasm/mod_wasm.c
