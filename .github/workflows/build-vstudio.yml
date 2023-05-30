@@ -34,7 +34,13 @@ jobs:
       #       python
       #       mingw-w64-x86_64-expat
 
-      - name: Setup MSVC for C/C++ development
+      - name: Cache Chocolatey packages
+        uses: actions/cache@v2
+        with:
+          path: ${{ runner.temp }}\chocolately
+          key: ${{ runner.os }}-chocolately-${{ hashFiles('**/chocolatey.config') }}
+
+      - name: Install Visual Studio for C/C++ development
         run: |
           choco install visualstudio2022buildtools
           refreshenv
