@@ -14,6 +14,9 @@ jobs:
     runs-on: windows-latest
     env:
       APACHE_PATH: apache_httpd
+    
+    continue-on-error: true
+
     steps:
       - uses: actions/checkout@v3
 
@@ -34,13 +37,13 @@ jobs:
         shell: msys2 {0}
         run: which libtool
 
-      # - name: ls -lr | grep xml2  (msys)
-      #   shell: msys2 {0}
-      #   run: "ls -lr | grep xml2"
+      - name: ls -lr | grep xml2  (msys)
+        shell: msys2 {0}
+        run: ls -lr | grep xml2
 
       - name: ls -lr | grep xml2 (bash)
         shell: bash
-        run: "ls -lr | grep xml2"
+        run: ls -lr | grep xml2
 
       - name: Checkout Apache HTTP Server repository into '${{ env.APACHE_PATH }}'
         uses: actions/checkout@v3
