@@ -63,35 +63,39 @@ jobs:
         working-directory: ${{ env.APACHE_PATH }}
         run: svn co http://svn.apache.org/repos/asf/apr/apr/trunk srclib/apr
 
-      - name: ls @ ${{ env.APACHE_PATH }} 
-        working-directory: ${{ env.APACHE_PATH }}
-        run: ls
+      # - name: ls @ ${{ env.APACHE_PATH }} 
+      #   working-directory: ${{ env.APACHE_PATH }}
+      #   run: ls
 
-      - name: ls @ ${{ env.APACHE_PATH }}/srclib/apr
-        working-directory: ${{ env.APACHE_PATH }}/srclib/apr
-        run: ls
+      # - name: ls @ ${{ env.APACHE_PATH }}/srclib/apr
+      #   working-directory: ${{ env.APACHE_PATH }}/srclib/apr
+      #   run: ls
 
       - name: Run 'buildconf' for APR
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr
         shell: msys2 {0}
         run: ./buildconf --verbose
 
-      - name: ls @ ${{ env.APACHE_PATH }}/srclib/apr
-        working-directory: ${{ env.APACHE_PATH }}/srclib/apr
-        run: ls
+      # - name: ls @ ${{ env.APACHE_PATH }}/srclib/apr
+      #   working-directory: ${{ env.APACHE_PATH }}/srclib/apr
+      #   run: ls
       
-      - name: ls @ ${{ env.APACHE_PATH }}/srclib/apr/include
-        working-directory: ${{ env.APACHE_PATH }}/srclib/apr/include
-        run: ls
+      # - name: ls @ ${{ env.APACHE_PATH }}/srclib/apr/include
+      #   working-directory: ${{ env.APACHE_PATH }}/srclib/apr/include
+      #   run: ls
 
       - name: Run 'configure' for APR 
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr
         shell: msys2 {0}
         run: ./configure --with-expat=/mingw64
 
-      - name: ls @ ${{ env.APACHE_PATH }}/srclib/apr/include
-        working-directory: ${{ env.APACHE_PATH }}/srclib/apr/include
-        run: ls
+      - name: ls -lr /usr/include
+        shell: bash
+        run: ls -lr /usr/include
+
+      - name: find /usr/include -name '*sock*
+        shell: bash
+        run: find /usr/include -name '*sock*'
 
       - name: cat @ ${{ env.APACHE_PATH }}/srclib/apr/include/apr.h
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr/include
