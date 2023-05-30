@@ -34,13 +34,13 @@ jobs:
         shell: msys2 {0}
         run: which libtool
 
-      - name: ls -lR | grep xml2  (msys)
+      - name: ls -lr | grep xml2  (msys)
         shell: msys2 {0}
-        run: ls -lR | grep xml2
+        run: "ls -lr | grep xml2"
 
-      - name: ls -lR | grep xml2 (bash)
+      - name: ls -lr | grep xml2 (bash)
         shell: bash
-        run: ls -lR | grep xml2
+        run: "ls -lr | grep xml2"
 
       - name: Checkout Apache HTTP Server repository into '${{ env.APACHE_PATH }}'
         uses: actions/checkout@v3
