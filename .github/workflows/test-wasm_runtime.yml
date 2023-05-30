@@ -28,6 +28,7 @@ jobs:
             autotools
             gcc
             python
+            libxml2
 
       - name: Check for 'libtool'
         shell: msys2 {0}
