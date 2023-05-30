@@ -109,9 +109,22 @@ jobs:
       #   working-directory: ${{ env.APACHE_PATH }}/srclib/apr/include
       #   run: sed -i "s/..<sys\/sockets.h>/<winsocks2.h>/g" apr.h
 
+      # "c:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\bin\Hostx64\x64\cl.exe"
+      # /nologo /MD /O2 /LD /W3 -DWIN32 -D_WIN32
+      # -I%APACHE%\include
+      # -I"C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um"
+      # -I"C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared"
+      # -I"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include"
+      # -I"C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\ucrt"
+      # -I"%WASM_RUNTIME%\include" /c /Fomod_wasm.obj mod_wasm.c
+
+      - name: echo includes
+        run: echo $INCLUDE
+
       - name: Compile mod_wasm.so    
         run: cl.exe /nologo /MD /O2 /LD /W3 -DWIN32 -D_WIN32
             -I/usr/include
+            -I$INCLUDE
             -I./${{ env.APACHE_PATH }}/include -I./${{ env.APACHE_PATH }}/srclib/apr/include
             -I../wasm_runtime/include
             /c /Fomod_wasm.obj mod_wasm/modules/wasm/mod_wasm.c
