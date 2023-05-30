@@ -40,6 +40,15 @@ jobs:
         run: |
           find /usr -name '*xml2*'
 
+      - name: pkg-config --cflags libxml-2.0 (bash)
+        shell: bash
+        run: pkg-config --cflags libxml-2.0
+
+      - name: pkg-config --cflags libxml-2.0 (msys2 {0})
+        shell: msys2 {0}
+        run: pkg-config --cflags libxml-2.0
+
+
       - name: Checkout Apache HTTP Server repository into '${{ env.APACHE_PATH }}'
         uses: actions/checkout@v3
         with:
