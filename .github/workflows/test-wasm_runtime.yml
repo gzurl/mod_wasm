@@ -28,7 +28,7 @@ jobs:
             autotools
             gcc
             python
-            expat
+            libxml2
 
       - name: Check for 'libtool'
         shell: msys2 {0}
@@ -65,10 +65,14 @@ jobs:
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr/include
         run: ls
 
+      - name: find . -name *xml2* 
+        shell: bash
+        run: find . -name *xml2*
+
       - name: Run 'configure' for APR 
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr
         shell: msys2 {0}
-        run: ./configure
+        run: ./configure --with-libxml2=/usr/include/libxml2/libxml
 
       - name: ls @ ${{ env.APACHE_PATH }}/srclib/apr/include
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr/include
