@@ -28,7 +28,7 @@ jobs:
             autotools
             gcc
             python
-            libxml2
+            expat
 
       - name: Check for 'libtool'
         shell: msys2 {0}
