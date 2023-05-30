@@ -28,9 +28,11 @@ jobs:
             autotools
 
       - name: Check for 'libtool'
+        shell: msys2 {0}
         run: which libtool
 
       - name: Run 'libtool'
+        shell: msys2 {0}
         run: libtool
 
       - name: Checkout Apache HTTP Server repository into '${{ env.APACHE_PATH }}'
