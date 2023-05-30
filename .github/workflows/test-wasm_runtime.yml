@@ -93,7 +93,8 @@ jobs:
         shell: msys2 {0}
         run: ls -lr /usr/include/sys
 
-      - name: ls -lr /usr 
+      - name: ls -lr /usr
+        shell: bash
         run: ls -lr /usr
 
       - name: find /usr -name '*sock*
