@@ -40,6 +40,11 @@ jobs:
         run: |
           find /usr -name '*xml2*'
 
+      - name: find /mingw64 -name '*xml2*' (msys2 {0})
+        shell: msys2 {0}
+        run: |
+          find /mingw64 -name '*xml2*'
+
       # - name: pkg-config --cflags libxml-2.0 (bash)
       #   shell: bash
       #   run: pkg-config --cflags libxml-2.0
@@ -83,7 +88,7 @@ jobs:
       - name: Run 'configure' for APR 
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr
         shell: msys2 {0}
-        run: ./configure --with-libxml2=/mingw64/include/libxml2
+        run: ./configure --with-libxml2=/mingw64
 
       - name: ls @ ${{ env.APACHE_PATH }}/srclib/apr/include
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr/include
