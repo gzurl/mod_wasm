@@ -33,21 +33,21 @@ jobs:
             gcc
             python
             libxml2
+            expat
 
       - name: ls -l / (msys2 {0})
         shell: msys2 {0}
         run: ls -l /
 
-      # - name: ls -lR ../.. > grep (bash)
-      #   shell: bash
-      #   run: |
-      #     ls -lR ../.. > output.txt
-      #     grep -Rn "xml2" output.txt
-
       - name: find /usr -name '*xml2*' (msys2 {0})
         shell: msys2 {0}
         run: |
           find /usr -name '*xml2*'
+
+      - name: find /usr -name '*expat*' (msys2 {0})
+        shell: msys2 {0}
+        run: |
+            find /usr -name '*expat*'
 
       - name: Checkout Apache HTTP Server repository into '${{ env.APACHE_PATH }}'
         uses: actions/checkout@v3
@@ -83,7 +83,7 @@ jobs:
       - name: Run 'configure' for APR 
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr
         shell: msys2 {0}
-        run: ./configure --with-libxml2=/usr/include/libxml2
+        run: ./configure --with-libxml2=/usr/include/w32api
 
       - name: ls @ ${{ env.APACHE_PATH }}/srclib/apr/include
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr/include
