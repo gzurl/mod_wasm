@@ -89,9 +89,12 @@ jobs:
         shell: msys2 {0}
         run: ./configure --with-expat=/mingw64
 
-      - name: ls -lr /usr/include
+      - name: ls -lr /usr/include/sys @ msys2
         shell: msys2 {0}
-        run: ls -lr /usr/include
+        run: ls -lr /usr/include/sys
+
+      - name: ls -lr /usr 
+        run: ls -lr /usr
 
       - name: find /usr -name '*sock*
         shell: bash
