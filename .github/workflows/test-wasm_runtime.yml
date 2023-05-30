@@ -65,9 +65,9 @@ jobs:
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr/include
         run: ls
 
-      - name: find . -name *xml2* 
-        shell: bash
-        run: find . -name *xml2*
+      - name: find / -name *xml2* 
+        shell: msys2 {0}
+        run: find / -name *xml2*
 
       - name: Run 'configure' for APR 
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr
