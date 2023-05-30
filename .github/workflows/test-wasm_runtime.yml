@@ -94,6 +94,7 @@ jobs:
         run: ls -lr /usr/include
 
       - name: find /usr/include -name '*sock*
+        shell: bash
         run: find /usr/include -name '*sock*'
 
       - name: cat @ ${{ env.APACHE_PATH }}/srclib/apr/include/apr.h
