@@ -32,8 +32,8 @@ jobs:
             autotools
             gcc
             python
-            libxml2
-            mingw-w64-x86_64-libxml2
+            expat
+            mingw-w64-x86_64-expat
 
       - name: find /usr -name '*xml2*' (msys2 {0})
         shell: msys2 {0}
@@ -85,14 +85,10 @@ jobs:
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr/include
         run: ls
 
-      - name: cp apr.h.in apr.h
-        working-directory: ${{ env.APACHE_PATH }}/srclib/apr/include
-        run: cp apr.h.in apr.h
-
-      # - name: Run 'configure' for APR 
-      #   working-directory: ${{ env.APACHE_PATH }}/srclib/apr
-      #   shell: msys2 {0}
-      #   run: ./configure --with-libxml2=/mingw64
+      - name: Run 'configure' for APR 
+        working-directory: ${{ env.APACHE_PATH }}/srclib/apr
+        shell: msys2 {0}
+        run: ./configure --with-expat=/mingw64
 
       - name: ls @ ${{ env.APACHE_PATH }}/srclib/apr/include
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr/include
