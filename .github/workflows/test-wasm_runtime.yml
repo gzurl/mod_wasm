@@ -34,9 +34,9 @@ jobs:
         shell: msys2 {0}
         run: which libtool
 
-      - name: ls -lr | grep xml2  (msys)
-        shell: msys2 {0}
-        run: "ls -lr | grep xml2"
+      # - name: ls -lr | grep xml2  (msys)
+      #   shell: msys2 {0}
+      #   run: "ls -lr | grep xml2"
 
       - name: ls -lr | grep xml2 (bash)
         shell: bash
