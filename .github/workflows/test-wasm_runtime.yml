@@ -58,10 +58,19 @@ jobs:
       - name: ls @ ${{ env.APACHE_PATH }}/srclib/apr
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr
         run: ls
+      
+      - name: ls @ ${{ env.APACHE_PATH }}/srclib/apr/include
+        working-directory: ${{ env.APACHE_PATH }}/srclib/apr/include
+        run: ls
 
       - name: Run 'configure' for APR 
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr
+        shell: msys2 {0}
         run: ./configure
+
+      - name: ls @ ${{ env.APACHE_PATH }}/srclib/apr/include
+        working-directory: ${{ env.APACHE_PATH }}/srclib/apr/include
+        run: ls
 
       - name: Compile mod_wasm.so      
         run: cl.exe /nologo /MD /O2 /LD /W3 -DWIN32 -D_WIN32
