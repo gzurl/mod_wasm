@@ -34,23 +34,20 @@ jobs:
             python
             libxml2
 
-      - name: Check for 'libtool'
+      - name: ls -l / (msys2 {0})
         shell: msys2 {0}
-        run: which libtool
-
-      - name: ls -l ../.. (bash)
-        shell: bash
-        run: ls -l ../..
-
-      - name: ls -l / (bash)
-        shell: bash
         run: ls -l /
 
-      - name: ls -lR ../.. > grep (bash)
-        shell: bash
+      # - name: ls -lR ../.. > grep (bash)
+      #   shell: bash
+      #   run: |
+      #     ls -lR ../.. > output.txt
+      #     grep -Rn "xml2" output.txt
+
+      - name: find /usr -name '*xml2*' (msys2 {0})
+        shell: msys2 {0}
         run: |
-          ls -lR ../.. > output.txt
-          grep -Rn "xml2" output.txt
+          find /usr -name '*xml2*'
 
       - name: Checkout Apache HTTP Server repository into '${{ env.APACHE_PATH }}'
         uses: actions/checkout@v3
