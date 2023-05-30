@@ -14,8 +14,6 @@ jobs:
     runs-on: windows-latest
     env:
       APACHE_PATH: apache_httpd
-    strategy:
-      fail-fast: true
     steps:
       - uses: actions/checkout@v3
 
