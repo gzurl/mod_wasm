@@ -38,21 +38,17 @@ jobs:
         shell: msys2 {0}
         run: which libtool
 
-      - name: ls -l .. (bash)
+      - name: ls -l ../.. (bash)
         shell: bash
-        run: ls -l ..
+        run: ls -l ../..
 
-      - name: ls -lR .. (bash)
+      - name: ls -lR ../.. (bash)
         shell: bash
-        run: ls -lR ..
+        run: ls -lR ../..
 
-      - name: ls -lR (msys)
+      - name: ls -lR ../.. (msys)
         shell: msys2 {0}
-        run: ls -lR
-        
-      - name: ls -lR (bash)
-        shell: bash
-        run: ls -lR 
+        run: ls -lR ../..
 
 
 
