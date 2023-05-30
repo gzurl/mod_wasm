@@ -97,12 +97,13 @@ jobs:
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr/include
         run: cat apr.h
 
-      - name: Replace <sys/sockets.h> with <winsocks2.h>
-        working-directory: ${{ env.APACHE_PATH }}/srclib/apr/include
-        run: sed -i "s/..<sys\/sockets.h>/<winsocks2.h>/g" apr.h
+      # - name: Replace <sys/sockets.h> with <winsocks2.h>
+      #   working-directory: ${{ env.APACHE_PATH }}/srclib/apr/include
+      #   run: sed -i "s/..<sys\/sockets.h>/<winsocks2.h>/g" apr.h
 
       - name: Compile mod_wasm.so      
         run: cl.exe /nologo /MD /O2 /LD /W3 -DWIN32 -D_WIN32
+            -I/usr/include
             -I./${{ env.APACHE_PATH }}/include -I./${{ env.APACHE_PATH }}/srclib/apr/include
             -I../wasm_runtime/include
             /c /Fomod_wasm.obj mod_wasm/modules/wasm/mod_wasm.c
