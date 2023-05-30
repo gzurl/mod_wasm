@@ -34,6 +34,10 @@ jobs:
         shell: msys2 {0}
         run: which libtool
 
+      - name: pwd && find . -name *xml2*
+        shell: msys2 {0}
+        run: pwd && find . -name *xml2*
+
       - name: Checkout Apache HTTP Server repository into '${{ env.APACHE_PATH }}'
         uses: actions/checkout@v3
         with:
@@ -64,10 +68,6 @@ jobs:
       - name: ls @ ${{ env.APACHE_PATH }}/srclib/apr/include
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr/include
         run: ls
-
-      - name: find / -name *xml2* 
-        shell: msys2 {0}
-        run: find / -name *xml2*
 
       - name: Run 'configure' for APR 
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr
