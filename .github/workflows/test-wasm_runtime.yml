@@ -32,7 +32,7 @@ jobs:
             autotools
             gcc
             python
-            expat
+            mingw-w64-x86_64-expat
 
       # - name: find /usr -name '*xml2*' (msys2 {0})
       #   shell: msys2 {0}
