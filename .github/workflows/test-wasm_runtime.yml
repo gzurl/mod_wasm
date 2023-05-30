@@ -1,4 +1,4 @@
-name: Test `wasm_runtime.so`
+name: Build `mod_wasm.so` on Windows
 
 on:
   push:
@@ -19,9 +19,6 @@ jobs:
 
       - name: Setup MSVC for C/C++ development
         uses: ilammy/msvc-dev-cmd@v1
-
-      - name: Check for 'libtool'
-        run: which libtool
 
       - name: Install Autoconf
         uses: msys2/setup-msys2@v2
