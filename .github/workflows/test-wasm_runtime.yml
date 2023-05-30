@@ -93,9 +93,9 @@ jobs:
         shell: msys2 {0}
         run: ls -lr /usr/include
 
-      - name: find /usr/include -name '*sock*
+      - name: find /usr -name '*sock*
         shell: bash
-        run: find /usr/include -name '*sock*'
+        run: find /usr -name '*sock*'
 
       - name: cat @ ${{ env.APACHE_PATH }}/srclib/apr/include/apr.h
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr/include
