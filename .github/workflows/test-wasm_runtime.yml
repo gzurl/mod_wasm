@@ -15,7 +15,8 @@ jobs:
     env:
       APACHE_PATH: apache_httpd
     
-    continue-on-error: true
+    strategy:
+      fail-fast: false
 
     steps:
       - uses: actions/checkout@v3
@@ -37,13 +38,23 @@ jobs:
         shell: msys2 {0}
         run: which libtool
 
-      - name: ls -lr (msys)
-        shell: msys2 {0}
-        run: ls -lr
-        
-      - name: ls -lr | grep xml2 (bash)
+      - name: ls -l .. (bash)
         shell: bash
-        run: ls -lr | grep xml2
+        run: ls -l ..
+
+      - name: ls -lR .. (bash)
+        shell: bash
+        run: ls -lR ..
+
+      - name: ls -lR (msys)
+        shell: msys2 {0}
+        run: ls -lR
+        
+      - name: ls -lR (bash)
+        shell: bash
+        run: ls -lR 
+
+
 
       - name: Checkout Apache HTTP Server repository into '${{ env.APACHE_PATH }}'
         uses: actions/checkout@v3
