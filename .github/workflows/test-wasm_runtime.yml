@@ -33,7 +33,6 @@ jobs:
             gcc
             python
             expat
-            mingw-w64-x86_64-expat
 
       # - name: find /usr -name '*xml2*' (msys2 {0})
       #   shell: msys2 {0}
@@ -93,6 +92,10 @@ jobs:
       - name: ls @ ${{ env.APACHE_PATH }}/srclib/apr/include
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr/include
         run: ls
+
+      - name: cat @ ${{ env.APACHE_PATH }}/srclib/apr/include/apr.h
+        working-directory: ${{ env.APACHE_PATH }}/srclib/apr/include
+        run: cat @ ${{ env.APACHE_PATH }}/srclib/apr/include/apr.h
 
       - name: Compile mod_wasm.so      
         run: cl.exe /nologo /MD /O2 /LD /W3 -DWIN32 -D_WIN32
