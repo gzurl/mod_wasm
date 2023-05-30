@@ -94,7 +94,6 @@ jobs:
         run: ls -lr /usr/include
 
       - name: find /usr/include -name '*sock*
-        shell: msys2 {0}
         run: find /usr/include -name '*sock*'
 
       - name: cat @ ${{ env.APACHE_PATH }}/srclib/apr/include/apr.h
@@ -106,7 +105,6 @@ jobs:
       #   run: sed -i "s/..<sys\/sockets.h>/<winsocks2.h>/g" apr.h
 
       - name: Compile mod_wasm.so    
-        shell: msys2 {0}
         run: cl.exe /nologo /MD /O2 /LD /W3 -DWIN32 -D_WIN32
             -I/usr/include
             -I./${{ env.APACHE_PATH }}/include -I./${{ env.APACHE_PATH }}/srclib/apr/include
