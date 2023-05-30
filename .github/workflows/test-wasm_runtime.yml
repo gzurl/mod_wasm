@@ -89,7 +89,7 @@ jobs:
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr
         shell: msys2 {0}
         # run: ./configure --with-libxml2=/mingw64
-        run: ./configure --disable-libxml2 --disabel-expat
+        run: ./configure --disable-libxml2 --disable-expat
 
       - name: ls @ ${{ env.APACHE_PATH }}/srclib/apr/include
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr/include
