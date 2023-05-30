@@ -24,7 +24,7 @@ jobs:
       - name: Setup MSVC for C/C++ development
         uses: ilammy/msvc-dev-cmd@v1
 
-      - name: Install MSYS2 with Autoconf, Python
+      - name: Install MSYS2 with dependencies
         uses: msys2/setup-msys2@v2
         with:
           update: true
@@ -33,11 +33,7 @@ jobs:
             gcc
             python
             libxml2
-            mingw-w64-libxml2
-
-      - name: ls -l / (msys2 {0})
-        shell: msys2 {0}
-        run: ls -l /
+            mingw-w64-x86_64-libxml2
 
       - name: find /usr -name '*xml2*' (msys2 {0})
         shell: msys2 {0}
