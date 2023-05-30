@@ -20,12 +20,13 @@ jobs:
       - name: Setup MSVC for C/C++ development
         uses: ilammy/msvc-dev-cmd@v1
 
-      - name: Install Autoconf
+      - name: Install MSYS2 with Autoconf, Python
         uses: msys2/setup-msys2@v2
         with:
           update: true
           install: >-
             autotools
+            python
 
       - name: Check for 'libtool'
         shell: msys2 {0}
