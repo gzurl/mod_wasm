@@ -34,9 +34,13 @@ jobs:
         shell: msys2 {0}
         run: which libtool
 
-      - name: pwd && find . -name *xml2*
+      - name: find . -name *xml2* (msys)
         shell: msys2 {0}
-        run: pwd && find . -name *xml2*
+        run: find . -name *xml2*
+
+      - name: find . -name *xml2* (bash)
+        shell: bash
+        run: find . -name *xml2*
 
       - name: Checkout Apache HTTP Server repository into '${{ env.APACHE_PATH }}'
         uses: actions/checkout@v3
