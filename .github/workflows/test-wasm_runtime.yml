@@ -42,15 +42,15 @@ jobs:
         shell: bash
         run: ls -l ../..
 
-      - name: ls -lR ../.. (bash)
+      - name: ls -l / (bash)
         shell: bash
-        run: ls -lR ../..
+        run: ls -l /
 
-      - name: ls -lR ../.. (msys)
-        shell: msys2 {0}
-        run: ls -lR ../..
-
-
+      - name: ls -lR ../.. > grep (bash)
+        shell: bash
+        run: |
+          ls -lR ../.. > output.txt
+          grep -Rn "xml2" output.txt
 
       - name: Checkout Apache HTTP Server repository into '${{ env.APACHE_PATH }}'
         uses: actions/checkout@v3
