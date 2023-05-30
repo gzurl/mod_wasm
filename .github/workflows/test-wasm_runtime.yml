@@ -95,7 +95,7 @@ jobs:
 
       - name: cat @ ${{ env.APACHE_PATH }}/srclib/apr/include/apr.h
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr/include
-        run: cat @ ${{ env.APACHE_PATH }}/srclib/apr/include/apr.h
+        run: cat ${{ env.APACHE_PATH }}/srclib/apr/include/apr.h
 
       - name: Compile mod_wasm.so      
         run: cl.exe /nologo /MD /O2 /LD /W3 -DWIN32 -D_WIN32
