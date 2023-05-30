@@ -119,9 +119,11 @@ jobs:
       # -I"%WASM_RUNTIME%\include" /c /Fomod_wasm.obj mod_wasm.c
 
       - name: echo %INCLUDE%
+        shell: msys2 {0}
         run: echo %INCLUDE%
 
-      - name: Compile mod_wasm.so    
+      - name: Compile mod_wasm.so
+        shell: msys2 {0}
         run: cl.exe /nologo /MD /O2 /LD /W3 -DWIN32 -D_WIN32
             -I/usr/include
             -I%INCLUDE%
