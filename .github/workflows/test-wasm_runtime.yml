@@ -35,23 +35,23 @@ jobs:
             expat
             mingw-w64-x86_64-expat
 
-      - name: find /usr -name '*xml2*' (msys2 {0})
-        shell: msys2 {0}
-        run: |
-          find /usr -name '*xml2*'
+      # - name: find /usr -name '*xml2*' (msys2 {0})
+      #   shell: msys2 {0}
+      #   run: |
+      #     find /usr -name '*xml2*'
 
-      - name: find /mingw64 -name '*xml2*' (msys2 {0})
-        shell: msys2 {0}
-        run: |
-          find /mingw64 -name '*xml2*'
+      # - name: find /mingw64 -name '*xml2*' (msys2 {0})
+      #   shell: msys2 {0}
+      #   run: |
+      #     find /mingw64 -name '*xml2*'
 
       # - name: pkg-config --cflags libxml-2.0 (bash)
       #   shell: bash
       #   run: pkg-config --cflags libxml-2.0
 
-      - name: pkg-config --cflags libxml-2.0 (msys2 {0})
-        shell: msys2 {0}
-        run: pkg-config --cflags libxml-2.0
+      # - name: pkg-config --cflags libxml-2.0 (msys2 {0})
+      #   shell: msys2 {0}
+      #   run: pkg-config --cflags libxml-2.0
 
 
       - name: Checkout Apache HTTP Server repository into '${{ env.APACHE_PATH }}'
