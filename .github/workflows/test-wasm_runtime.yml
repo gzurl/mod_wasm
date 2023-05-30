@@ -33,7 +33,7 @@ jobs:
             gcc
             python
             libxml2
-            expat
+            mingw-w64-libxml2
 
       - name: ls -l / (msys2 {0})
         shell: msys2 {0}
@@ -43,11 +43,6 @@ jobs:
         shell: msys2 {0}
         run: |
           find /usr -name '*xml2*'
-
-      - name: find /usr -name '*expat*' (msys2 {0})
-        shell: msys2 {0}
-        run: |
-            find /usr -name '*expat*'
 
       - name: Checkout Apache HTTP Server repository into '${{ env.APACHE_PATH }}'
         uses: actions/checkout@v3
