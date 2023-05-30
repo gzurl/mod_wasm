@@ -1,0 +1,149 @@
+name: Build `mod_wasm.so` on Windows (msys2)
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    env:
+      APACHE_PATH: apache_httpd
+    
+    strategy:
+      fail-fast: false
+
+    steps:
+      # - uses: actions/checkout@v3
+
+      # - name: Setup MSVC for C/C++ development
+      #   uses: ilammy/msvc-dev-cmd@v1
+
+      # - name: Install MSYS2 with dependencies
+      #   uses: msys2/setup-msys2@v2
+      #   with:
+      #     update: true
+      #     install: >-
+      #       autotools
+      #       gcc
+      #       python
+      #       mingw-w64-x86_64-expat
+
+      # # - name: find /usr -name '*xml2*' (msys2 {0})
+      # #   shell: msys2 {0}
+      # #   run: |
+      # #     find /usr -name '*xml2*'
+
+      # # - name: find /mingw64 -name '*xml2*' (msys2 {0})
+      # #   shell: msys2 {0}
+      # #   run: |
+      # #     find /mingw64 -name '*xml2*'
+
+      # # - name: pkg-config --cflags libxml-2.0 (bash)
+      # #   shell: bash
+      # #   run: pkg-config --cflags libxml-2.0
+
+      # # - name: pkg-config --cflags libxml-2.0 (msys2 {0})
+      # #   shell: msys2 {0}
+      # #   run: pkg-config --cflags libxml-2.0
+
+
+      # - name: Checkout Apache HTTP Server repository into '${{ env.APACHE_PATH }}'
+      #   uses: actions/checkout@v3
+      #   with:
+      #     repository: apache/httpd
+      #     path: ${{ env.APACHE_PATH }}
+
+      # - name: Checkout Apache Portable Runtime (APR) into '${{ env.APACHE_PATH }}/srclib/apr'
+      #   working-directory: ${{ env.APACHE_PATH }}
+      #   run: svn co http://svn.apache.org/repos/asf/apr/apr/trunk srclib/apr
+
+      # # - name: ls @ ${{ env.APACHE_PATH }} 
+      # #   working-directory: ${{ env.APACHE_PATH }}
+      # #   run: ls
+
+      # # - name: ls @ ${{ env.APACHE_PATH }}/srclib/apr
+      # #   working-directory: ${{ env.APACHE_PATH }}/srclib/apr
+      # #   run: ls
+
+      # - name: Run 'buildconf' for APR
+      #   working-directory: ${{ env.APACHE_PATH }}/srclib/apr
+      #   shell: msys2 {0}
+      #   run: ./buildconf --verbose
+
+      # # - name: ls @ ${{ env.APACHE_PATH }}/srclib/apr
+      # #   working-directory: ${{ env.APACHE_PATH }}/srclib/apr
+      # #   run: ls
+      
+      # # - name: ls @ ${{ env.APACHE_PATH }}/srclib/apr/include
+      # #   working-directory: ${{ env.APACHE_PATH }}/srclib/apr/include
+      # #   run: ls
+
+      # - name: Run 'configure' for APR 
+      #   working-directory: ${{ env.APACHE_PATH }}/srclib/apr
+      #   shell: msys2 {0}
+      #   run: ./configure --with-expat=/mingw64
+
+      # - name: ls -lr /usr/include/sys @ msys2
+      #   shell: msys2 {0}
+      #   run: ls -lr /usr/include/sys
+
+      # - name: ls -lr /usr
+      #   shell: bash
+      #   run: ls -lr /usr
+
+      # - name: find /usr -name '*sock*
+      #   shell: bash
+      #   run: find /usr -name '*sock*'
+
+      # - name: cat @ ${{ env.APACHE_PATH }}/srclib/apr/include/apr.h
+      #   working-directory: ${{ env.APACHE_PATH }}/srclib/apr/include
+      #   run: cat apr.h
+
+      # # - name: Replace <sys/sockets.h> with <winsocks2.h>
+      # #   working-directory: ${{ env.APACHE_PATH }}/srclib/apr/include
+      # #   run: sed -i "s/..<sys\/sockets.h>/<winsocks2.h>/g" apr.h
+
+      # # "c:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\bin\Hostx64\x64\cl.exe"
+      # # /nologo /MD /O2 /LD /W3 -DWIN32 -D_WIN32
+      # # -I%APACHE%\include
+      # # -I"C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\um"
+      # # -I"C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\shared"
+      # # -I"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include"
+      # # -I"C:\Program Files (x86)\Windows Kits\10\Include\10.0.20348.0\ucrt"
+      # # -I"%WASM_RUNTIME%\include" /c /Fomod_wasm.obj mod_wasm.c
+
+      # - name: echo %INCLUDE%
+      #   shell: msys2 {0}
+      #   run: echo %INCLUDE%
+
+      # - name: Compile mod_wasm.so
+      #   shell: msys2 {0}
+      #   run: cl.exe /nologo /MD /O2 /LD /W3 -DWIN32 -D_WIN32
+      #       -I/usr/include
+      #       -I%INCLUDE%
+      #       -I./${{ env.APACHE_PATH }}/include -I./${{ env.APACHE_PATH }}/srclib/apr/include
+      #       -I../wasm_runtime/include
+      #       /c /Fomod_wasm.obj mod_wasm/modules/wasm/mod_wasm.c
+
+      
+# jobs:
+#   test:
+#     strategy:
+#       fail-fast: false
+#       matrix:
+#         os: [ubuntu-latest, windows-latest, macos-latest]
+#     runs-on: ${{ matrix.os }}
+#     steps:
+#     - uses: actions/checkout@v3
+#     - name: Build
+#       working-directory: ./wasm_runtime
+#       run: cargo build --verbose
+#     - name: Run tests
+#       working-directory: ./wasm_runtime
+#       run: cargo test --verbose

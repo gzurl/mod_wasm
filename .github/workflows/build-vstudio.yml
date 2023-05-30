@@ -84,7 +84,7 @@ jobs:
 
       - name: Run 'buildconf' for APR
         working-directory: ${{ env.APACHE_PATH }}/srclib/apr
-        shell: msys2 {0}
+        # shell: msys2 {0}
         run: ./buildconf --verbose
 
       # - name: ls @ ${{ env.APACHE_PATH }}/srclib/apr
